@@ -51,7 +51,8 @@
     "release": "npx standard-version",
     "release:github": "DEBUG=conventional-github-releaser npx conventional-github-releaser -p angular --config github-release.config.js",
     "clean:node": "modclean",
-    "check:lint": "eslint . -f json -o reports/eslint.json || exit 0"
+    "check:lint": "eslint . -f json -o reports/eslint.json || exit 0",
+    "start:deno": "deno run --allow-net deno_runtime/index.ts"
   },
   "dependencies": {
     "@amplitude/ua-parser-js": "0.7.24",
