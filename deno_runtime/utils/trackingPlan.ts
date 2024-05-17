@@ -3,6 +3,7 @@ import logger from '../logger.ts';
 import {responseStatusHandler} from './utils.ts'
 import { fetchWithProxy } from '../services/utils/fetch.ts';
 import stats from './stats.ts'
+import { getMockTrackingPlan } from './getTpMock.ts';
 
 const tpCache = new NodeCache({ useClones: false });
 const CONFIG_BACKEND_URL = Deno.env.CONFIG_BACKEND_URL || 'https://api.rudderlabs.com';
@@ -53,7 +54,7 @@ async function getTrackingPlan(tpId, version, workspaceId) {
 async function getEventSchema(tpId, tpVersion, eventType, eventName, workspaceId) {
   try {
     let eventSchema;
-    const tp = await getTrackingPlan(tpId, tpVersion, workspaceId);
+    const tp =  getMockTrackingPlan(tpId, tpVersion, workspaceId);
 
     if (Object.hasOwn(tp, 'events')) {
       const ev = tp.events.find((e) => e.name === eventName && e.eventType === eventType);
