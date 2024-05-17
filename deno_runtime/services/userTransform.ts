@@ -4,7 +4,6 @@ import { getMetadata, getTransformationMetadata, isNonFuncObject } from '../v0/u
 import logger from '../logger.ts';
 import stats from '../utils/stats.ts';
 import { userTransformHandler } from './routerUtils.ts';
-// eslint-disable-next-line import/extensions
 import { CommonUtils } from '../utils/common.ts';
 import { FeatureFlags, FEATURE_FILTER_CODE } from '../middleware/featureFlag.ts';
 import { HTTP_CUSTOM_STATUS_CODES } from '../constants.ts';

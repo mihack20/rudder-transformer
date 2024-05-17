@@ -1,5 +1,6 @@
 import parseStaticImports from 'npm:parse-static-imports';
-const { executeFaasFunction, FAAS_AST_VID, FAAS_AST_FN_NAME } = require('./openfaas');
+
+import { executeFaasFunction, FAAS_AST_VID, FAAS_AST_FN_NAME } from './openfaas/index.ts';
 
 function parserForJSImports(code) {
   const obj = {};
