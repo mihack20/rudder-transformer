@@ -9,6 +9,8 @@ import { metricsRouter } from './routes/metricsRouter';
 import cluster from './util/cluster';
 import { RedisDB } from './util/redis/redisConnector';
 import { logProcessInfo } from './util/utils';
+import { tpCache } from './util/trackingPlan';
+import tpFile from './services/hackathon/trackinplan.json';
 
 dotenv.config();
 const clusterEnabled = process.env.CLUSTER_ENABLED !== 'false';
@@ -16,6 +18,10 @@ const port = parseInt(process.env.PORT ?? '9090', 10);
 const metricsPort = parseInt(process.env.METRICS_PORT || '9091', 10);
 
 initPyroscope();
+
+// hardcode the trackingplan cache
+// set the json object here.
+tpCache.set('tp_abc::1', tpFile);
 
 const app = new Koa();
 addStatMiddleware(app);

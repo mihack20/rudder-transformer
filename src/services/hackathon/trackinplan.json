@@ -1,0 +1,3837 @@
+{
+  "name": "workspaces/workspaceId/tracking-plans/trackplan-id",
+  "display_name": "FrontRow Creator Mobile Tracking Plan",
+  "version": 79,
+  "rules": {
+    "identify": {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "required": ["context"],
+      "properties": {
+        "context": {
+          "type": "object",
+          "required": ["traits"],
+          "properties": {
+            "traits": {
+              "type": "object",
+              "required": ["language", "channel_id"],
+              "properties": {
+                "id": {
+                  "type": ["string"]
+                },
+                "email": {
+                  "type": ["string"],
+                  "description": "The email address of the user."
+                },
+                "phone": {
+                  "type": ["string"],
+                  "description": "the users' phone number."
+                },
+                "userId": {
+                  "type": ["string"],
+                  "description": "Sent by Rudderstack for authed users"
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The user's language"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The ID of the creator channel. "
+                },
+                "anonymousId": {
+                  "type": ["string"],
+                  "description": "Sent by Rudderstack for non-authed users"
+                },
+                "anonymous_id": {
+                  "type": ["string"],
+                  "description": "The user's device ID"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "description": "When the app is opened, user logs in, user signs up, or user changes profile language",
+      "version": "26-0-0"
+    },
+    "group": {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "required": ["traits"],
+      "properties": {
+        "traits": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": ["string"]
+            },
+            "plan": {
+              "type": ["string"]
+            },
+            "industry": {
+              "type": ["string"]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "description": "rule descrip missing",
+      "version": "2-0-0"
+    },
+    "page": {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "required": ["properties"],
+      "properties": {
+        "properties": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "path": {
+              "type": ["string"]
+            },
+            "title": {
+              "type": ["string"]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "description": "When a page is viewed.",
+      "version": "2-0-0"
+    },
+    "screen": {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "required": ["properties"],
+      "properties": {
+        "properties": {
+          "type": "object",
+          "required": ["path"],
+          "properties": {
+            "path": {
+              "type": ["string"],
+              "description": "The URL path to the page. "
+            },
+            "channel_id": {
+              "type": ["string"],
+              "description": "The ID of the creator channel. "
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "description": "Screen names can be found here: https://app.shortcut.com/frontrow/write/IkRvYyI6I3V1aWQgIjY0ZDIzZDVhLWQyMzEtNGE0Mi05YjVkLTRkNDI2ZmZlZDBiMiI=]",
+      "version": "8-0-0"
+    },
+    "events": [
+      {
+        "id": "ev_2ceMMYdtkiovzL9C8o2I17XCsmE",
+        "name": "Block User",
+        "description": "Mod blocks a user",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["user_id", "content_id", "content_type", "is_livechat"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user being blocked"
+                },
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment being replied to"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content that is being commented on"
+                },
+                "is_livechat": {
+                  "type": ["boolean"],
+                  "description": "Was comment within a live chat"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of the content that is being commented on"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2fvIwNpl5IpVWojeOORw9k0ze8Q",
+        "name": "Roll Skipped",
+        "description": "The user clicks “skip” on a roll",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "roll_playback_position",
+                "roll_id",
+                "content_id",
+                "is_live",
+                "bitrate",
+                "full_screen",
+                "roll_duration",
+                "roll_index"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live?"
+                },
+                "roll_id": {
+                  "type": ["string"],
+                  "description": "The ID of the roll"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID"
+                },
+                "roll_index": {
+                  "type": ["integer"],
+                  "description": "Index of the current roll (0-based)"
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "roll_duration": {
+                  "type": ["integer"],
+                  "description": "The total duration of the roll in seconds."
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used"
+                },
+                "roll_playback_position": {
+                  "type": ["integer"],
+                  "description": "Current playback position in seconds of a roll"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMY1pvYyd3vmn93xUvk6wpbr",
+        "name": "Report Comment",
+        "description": "User reports a comment",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "user_id",
+                "content_id",
+                "content_type",
+                "comment_id",
+                "reason",
+                "is_livechat"
+              ],
+              "properties": {
+                "reason": {
+                  "type": ["string"],
+                  "description": "The reason for being flagged"
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user posting the comment"
+                },
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment being replied to"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content that is being commented on"
+                },
+                "is_livechat": {
+                  "type": ["boolean"],
+                  "description": "Was comment within a live chat"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of the content that is being commented on"
+                },
+                "is_moderator": {
+                  "type": ["boolean"],
+                  "description": "Is the user posting at least a moderator role?"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMdqDegvKfazfQ2BCj6O0KT2",
+        "name": "Edit Comment",
+        "description": "User edits their own comment",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["user_id", "content_id", "content_type", "comment_id", "is_livechat"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user posting the comment"
+                },
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment being edited"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content that is being commented on"
+                },
+                "is_livechat": {
+                  "type": ["boolean"],
+                  "description": "Was comment within a live chat"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of the content that is being commented on"
+                },
+                "is_moderator": {
+                  "type": ["boolean"],
+                  "description": "Is the user posting at least a moderator role?"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Thb8vR7rOMaN2YfZsgrQ13ZOme",
+        "name": "Product Viewed",
+        "description": "rule descrip missing",
+        "version": "20-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["content_id", "product_id", "content_type"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The user viewing the product."
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language"
+                },
+                "referrer": {
+                  "type": ["string"],
+                  "description": "How was the user referred to this product? Deeplink URL. "
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The channel ID of the product"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content associated with the product. The user viewed the product associated with a piece of content. "
+                },
+                "product_id": {
+                  "type": ["string"],
+                  "description": "The ID of the product."
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content associated with the product. "
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3GHWpTIPu9bhUeabdzhw8X3",
+        "name": "Playback Failed",
+        "description": "When a playback error is encountered while the user is watching content.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason", "content_type", "content_id"],
+              "properties": {
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content: VIDEO, LIVESTREAM, AUDIO"
+                },
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2fvIwQqDyENVOkwYNEG8oOWRbrB",
+        "name": "Roll Completed",
+        "description": "The roll was watched to completion (the roll was not skipped, and the content was not exited while the roll was playing)",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "content_id",
+                "is_post_roll",
+                "roll_id",
+                "is_live",
+                "bitrate",
+                "full_screen",
+                "roll_duration",
+                "roll_index"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live?"
+                },
+                "roll_id": {
+                  "type": ["string"],
+                  "description": "The ID of the roll"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID"
+                },
+                "roll_index": {
+                  "type": ["integer"],
+                  "description": "Index of the current roll (0-based)"
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "is_post_roll": {
+                  "type": ["boolean"],
+                  "description": "Whether or not the roll is a post-roll"
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "roll_duration": {
+                  "type": ["integer"],
+                  "description": "The total duration of the roll in seconds."
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TfeHn8Tx62mIQ9osIekR9L2Mc4",
+        "name": "Content Unliked",
+        "description": "When a users unlikes a piece of content. ",
+        "version": "31-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["user_id", "content_id", "content_type", "playback_position"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content in uppercase. LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The playback progress of the content when it was unliked in seconds."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMdbPrk4wnfNYBi5IAJy2GWO",
+        "name": "Password Updated",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {},
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMZlY8MpXpLUpF0mP29HCKoL",
+        "name": "Account Deleted",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {},
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cPsiNVy6tSdHEZhLJq6JocnYwx",
+        "name": "New Comment",
+        "description": "User adds new comment",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["user_id", "content_id", "content_type", "is_livechat"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user posting the comment"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content that is being commented on"
+                },
+                "is_livechat": {
+                  "type": ["boolean"],
+                  "description": "Was comment within a live chat"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of the content that is being commented on"
+                },
+                "is_moderator": {
+                  "type": ["boolean"],
+                  "description": "Is the user posting at least a moderator role?"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cPsiJq8i1Bh9fyrec38bG1VBj5",
+        "name": "New Comment Reply",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["user_id", "content_id", "content_type", "comment_id"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user posting the comment"
+                },
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment being replied to"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content that is being commented on"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of the content that is being commented on"
+                },
+                "is_moderator": {
+                  "type": ["boolean"],
+                  "description": "Is the user posting at least a moderator role?"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3C7R4cOIZYo1Hjd2lI63VUo",
+        "name": "Comment Edit Failed",
+        "description": "When a comment or live chat edit fails.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason", "content_type", "content_id", "comment_id"],
+              "properties": {
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment. "
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content: VIDEO, LIVESTREAM, AUDIO"
+                },
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                },
+                "root_comment_id": {
+                  "type": ["string"],
+                  "description": "The root comment id, in case this is a reply in a comment thread. "
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS39kM7nFC0XUcmVEwB0TkzHA",
+        "name": "User SignUp Failed",
+        "description": "When the user sign up fails",
+        "version": "2-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason"],
+              "properties": {
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The ID of the creator channel. "
+                },
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "reason for failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMbWn290R8Iyh1RBUDabP79O",
+        "name": "Mod Remove Comment",
+        "description": "Mod removes a comment",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "user_id",
+                "content_id",
+                "content_type",
+                "comment_id",
+                "is_livechat",
+                "is_flagged",
+                "is_reported"
+              ],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user posting the comment"
+                },
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment being replied to"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content that is being commented on"
+                },
+                "is_flagged": {
+                  "type": ["boolean"],
+                  "description": "Was comment previously flagged by our api"
+                },
+                "is_livechat": {
+                  "type": ["boolean"],
+                  "description": "Was comment within a live chat"
+                },
+                "is_reported": {
+                  "type": ["boolean"],
+                  "description": "Was comment previously reported by user"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of the content that is being commented on"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMXeoUAe8NFCqRgCyGi5yCsL",
+        "name": "Search No Results",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["query"],
+              "properties": {
+                "query": {
+                  "type": ["string"],
+                  "description": "text string sent by user"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2dQbcDfBVLLTTL6E94j8UvMMBiN",
+        "name": "Mod Removed Comment",
+        "description": "Mod removes a comment",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "user_id",
+                "comment_id",
+                "content_id",
+                "is_flagged",
+                "is_livechat",
+                "is_reported",
+                "content_type"
+              ],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user posting the comment"
+                },
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment being replied to"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content that is being commented on"
+                },
+                "is_flagged": {
+                  "type": ["boolean"],
+                  "description": "Was comment previously flagged by our api"
+                },
+                "is_livechat": {
+                  "type": ["boolean"],
+                  "description": "Was comment within a live chat"
+                },
+                "is_reported": {
+                  "type": ["boolean"],
+                  "description": "Was comment previously reported by user"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of the content that is being commented on"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3E16Vz2XNzQPGNPOn5CQoTl",
+        "name": "Comment Post Failed",
+        "description": "When a new comment or live chat message post fails.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason", "content_type", "content_id"],
+              "properties": {
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content: VIDEO, LIVESTREAM, AUDIO"
+                },
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                },
+                "root_comment_id": {
+                  "type": ["string"],
+                  "description": "The root comment id, in case this is a reply in a comment thread. "
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMe4vbC8j0XleFnXvJtEBGDu",
+        "name": "Search Submitted",
+        "description": "Search is submitted by the user",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["query"],
+              "properties": {
+                "query": {
+                  "type": ["string"],
+                  "description": "text string sent by user"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Thb8wpBkv6RFGQFnWpWD2GBLBb",
+        "name": "Application Opened",
+        "description": "rule descrip missing",
+        "version": "3-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "from_background": {
+                  "type": ["boolean"],
+                  "description": "Was the app opened from the background"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3BG3ziOxEPqqIvN2PJXs1Tv",
+        "name": "User SignIn Failed",
+        "description": "When the user sign in fails",
+        "version": "2-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason"],
+              "properties": {
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The ID of the creator channel. "
+                },
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "reason for failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMdAVYBEcwl4yVuQhP4uMHNj",
+        "name": "App Language Change",
+        "description": "rule descrip missing",
+        "version": "2-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "language": {
+                  "type": ["string"],
+                  "description": "The language of the user"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMckvU6Fb9sYs567rsvrcALU",
+        "name": "Search Failed",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["query", "reason"],
+              "properties": {
+                "query": {
+                  "type": ["string"],
+                  "description": "text string sent by user"
+                },
+                "reason": {
+                  "type": ["string"],
+                  "description": "reason for failure"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Thb8y20tJQZHycZjCK4KHn2eld",
+        "name": "Application Updated",
+        "description": "rule descrip missing",
+        "version": "2-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "deep_link": {
+                  "type": ["string"],
+                  "description": "The URL the app was opened with."
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMXZPtFrJFHOct7qJcRBPoA5",
+        "name": "Search Found Results",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["query", "count"],
+              "properties": {
+                "count": {
+                  "type": ["integer"],
+                  "description": "number of results"
+                },
+                "query": {
+                  "type": ["string"],
+                  "description": "text string sent by user"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Thb8vhGT1mNPSlAIqUzPk4IJ1o",
+        "name": "Application Installed",
+        "description": "rule descrip missing",
+        "version": "2-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMePKDqUnTdN2BypmsShJh3i",
+        "name": "Delete Comment",
+        "description": "User deletes their own comment",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["user_id", "content_id", "content_type", "comment_id", "is_livechat"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user posting the comment"
+                },
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment being deleted"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content that is being commented on"
+                },
+                "is_livechat": {
+                  "type": ["boolean"],
+                  "description": "Was comment within a live chat"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of the content that is being commented on"
+                },
+                "is_moderator": {
+                  "type": ["boolean"],
+                  "description": "Is the user posting at least a moderator role?"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Tj4HWjaOndRctolY7vuh8ie5Oc",
+        "name": "User SignIn Started",
+        "description": "When the user starts the sign in process. ",
+        "version": "6-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The ID of the creator channel. "
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMa8gcFg7JtDuPpluJfbJx0E",
+        "name": "Profile Photo Added",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {},
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TisYOY3QdMK2s7T13m1zynlotZ",
+        "name": "User Signup Started",
+        "description": "When the user starts the registeration process. ",
+        "version": "6-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The ID of the creator channel. "
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Thb8xVNIxEKurcBj6B4C1idm5I",
+        "name": "Button Clicked",
+        "description": "rule descrip missing",
+        "version": "18-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user pressing the button."
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language"
+                },
+                "button_id": {
+                  "type": ["string"],
+                  "description": "The button ID, should be unique and universal accross devices. "
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The channel ID of the button. "
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TfeHotHmcE1UaNTXReRd0ncWaC",
+        "name": "Content Liked",
+        "description": "When a users likes a piece of content. ",
+        "version": "22-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["user_id", "content_id", "content_type", "playback_position"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content in uppercase. LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The playback progress of the content when it was liked in seconds. "
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cPsiMVlPb8QrqyWq2ANHjl7qgU",
+        "name": "New Comment Reaction",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["user_id", "content_id", "content_type", "comment_id", "is_livechat"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user posting the comment"
+                },
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment being replied to"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content that is being commented on"
+                },
+                "is_livechat": {
+                  "type": ["boolean"],
+                  "description": "Was comment within a live chat"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of the content that is being commented on"
+                },
+                "is_moderator": {
+                  "type": ["boolean"],
+                  "description": "Is the user posting at least a moderator role?"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2fvIwQ0KRvcUeRZUvaYL8p2GnPC",
+        "name": "Roll Playback Exited",
+        "description": "When the content is exited while a roll is playing, by navigation or hard closing the app.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "content_id",
+                "roll_playback_position",
+                "is_post_roll",
+                "roll_id",
+                "is_live",
+                "bitrate",
+                "full_screen",
+                "roll_duration",
+                "roll_index"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live?"
+                },
+                "roll_id": {
+                  "type": ["string"],
+                  "description": "The ID of the roll"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID"
+                },
+                "roll_index": {
+                  "type": ["integer"],
+                  "description": "Index of the current roll (0-based)"
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "is_post_roll": {
+                  "type": ["boolean"],
+                  "description": "Whether or not the roll is a post-roll"
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "roll_duration": {
+                  "type": ["integer"],
+                  "description": "The total duration of the roll in seconds."
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used"
+                },
+                "roll_playback_position": {
+                  "type": ["integer"],
+                  "description": "Current playback position in seconds of a roll"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2fvIwOj99dtpAJRuOrb8qR8MQI4",
+        "name": "Content Promo Clicked",
+        "description": "The user clicked the promotional action button that accompanies a roll (below the player)",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "url",
+                "content_id",
+                "roll_id",
+                "is_live",
+                "roll_index",
+                "roll_duration",
+                "full_screen"
+              ],
+              "properties": {
+                "url": {
+                  "type": ["string"],
+                  "description": "The URL that was shared."
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live?"
+                },
+                "roll_id": {
+                  "type": ["string"],
+                  "description": "The ID of the roll"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID"
+                },
+                "roll_index": {
+                  "type": ["integer"],
+                  "description": "Index of the current roll (0-based)"
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "roll_duration": {
+                  "type": ["integer"],
+                  "description": "The total duration of the roll in seconds."
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMcdBythWJRqH7jNRviQtDLS",
+        "name": "Mod Approved Comment",
+        "description": "Mod approves a flagged comment",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "user_id",
+                "content_id",
+                "content_type",
+                "comment_id",
+                "is_flagged",
+                "is_reported",
+                "is_livechat"
+              ],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user posting the comment"
+                },
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment being replied to"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content that is being commented on"
+                },
+                "is_flagged": {
+                  "type": ["boolean"],
+                  "description": "Was comment previously flagged by our api"
+                },
+                "is_livechat": {
+                  "type": ["boolean"],
+                  "description": "Was comment within a live chat"
+                },
+                "is_reported": {
+                  "type": ["boolean"],
+                  "description": "Was comment previously reported by user"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of the content that is being commented on"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3CO4QKo2NaTjkT3SOYd1btU",
+        "name": "Home Page Load Failed",
+        "description": "When a failure occurs fetching home screen content.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason", "page"],
+              "properties": {
+                "page": {
+                  "type": ["string"],
+                  "description": "The page (tab) name on which the load was attempted."
+                },
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3Ep8qsXTpybaMQG7Y8bn7th",
+        "name": "Comment Report Failed",
+        "description": "When a report of a comment or live chat message fails.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "failure_reason",
+                "content_type",
+                "content_id",
+                "comment_id",
+                "report_reason"
+              ],
+              "properties": {
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment. "
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content: VIDEO, LIVESTREAM, AUDIO"
+                },
+                "report_reason": {
+                  "type": ["string"],
+                  "description": "The report reason text (eg \"ABUSE\")"
+                },
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                },
+                "root_comment_id": {
+                  "type": ["string"],
+                  "description": "The root comment id, in case this is a reply in a comment thread. "
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3FUBzgI1zyUVsMqpQ14zzk6",
+        "name": "Delete Account Failed",
+        "description": "When a failure occurs attempting to delete the user account.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason"],
+              "properties": {
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3CTtEWxZBA6lcf6i2xVHvMd",
+        "name": "Profile Update Failed",
+        "description": "When a failure occurs attempting to make a change to the user profile.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason"],
+              "properties": {
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMaUSPn9gV30r9xQ1gZNbCGV",
+        "name": "Search Result Clicked",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["query", "count", "index", "content_id"],
+              "properties": {
+                "count": {
+                  "type": ["integer"],
+                  "description": "number of results"
+                },
+                "index": {
+                  "type": ["integer"],
+                  "description": "Index of item clicked in list"
+                },
+                "query": {
+                  "type": ["string"],
+                  "description": "text string sent by user"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "Id of content clicked"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Tj4Hbd7Ce1DSiHFsVNvc5NsiiW",
+        "name": "User SignIn Completed",
+        "description": "When the user completes the sign in process. ",
+        "version": "5-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The ID of the creator channel. "
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMZtjhaVffkVxdwnaBLgZWnu",
+        "name": "Profile Photo Updated",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {},
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2fvIwOycPUabZ8a8IFwtlzFLWvt",
+        "name": "Roll Started",
+        "description": "Playback of a roll starts",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "content_playback_position",
+                "is_post_roll",
+                "is_live",
+                "roll_id",
+                "content_id",
+                "bitrate",
+                "full_screen",
+                "roll_duration",
+                "roll_index"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live?"
+                },
+                "roll_id": {
+                  "type": ["string"],
+                  "description": "The ID of the roll"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID"
+                },
+                "roll_index": {
+                  "type": ["integer"],
+                  "description": "Index of the current roll (0-based)"
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "is_post_roll": {
+                  "type": ["boolean"],
+                  "description": "Whether or not the roll is a post-roll"
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "roll_duration": {
+                  "type": ["integer"],
+                  "description": "The total duration of the roll in seconds."
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used"
+                },
+                "content_playback_position": {
+                  "type": ["integer"],
+                  "description": "The number of seconds into the content (where a roll is inserted)"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TisYUUagYRgri2OFUSITUtjhJY",
+        "name": "User Signup Completed",
+        "description": "When a new user account is created. ",
+        "version": "6-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The ID of the creator channel. "
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMesiwgW7B3UVPzjzk0dI338",
+        "name": "Account Data Requested",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {},
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMbibaaMKdcxobpWO88QKZ2E",
+        "name": "Profile Photo Cleared",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {},
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3ALWMwmeguUFhnDO1KoMmwK",
+        "name": "Change Password Failed",
+        "description": "When a failure occurs attempting to change the user password.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason"],
+              "properties": {
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Thb8u2D5oytomlK5wudn5Fjrwf",
+        "name": "Content Shared",
+        "description": "rule descrip missing",
+        "version": "17-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["url", "content_id", "destination", "content_type"],
+              "properties": {
+                "url": {
+                  "type": ["string"],
+                  "description": "The URL that was shared. "
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user sharing the content."
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The channel ID of the content. "
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content that is being shared."
+                },
+                "destination": {
+                  "type": ["string"],
+                  "description": "The destination the content was shared to."
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of the content uppercased: LIVESTREAM, VIDEO, PODCAST, etc."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS39WwBiaiYTx9ETKLYzNycMK",
+        "name": "Comment Deletion Failed",
+        "description": "When a  comment or live chat message deletion fails.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason", "content_type", "content_id", "comment_id"],
+              "properties": {
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment. "
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content: VIDEO, LIVESTREAM, AUDIO"
+                },
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                },
+                "root_comment_id": {
+                  "type": ["string"],
+                  "description": "The root comment id, in case this is a reply in a comment thread. "
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3A4as0OIn1jUkkne8cp9R9i",
+        "name": "Comment Reaction Failed",
+        "description": "When a comment or live chat reaction (either incrementing or decrementing) fails.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "failure_reason",
+                "content_type",
+                "content_id",
+                "comment_id",
+                "count",
+                "is_incrementing"
+              ],
+              "properties": {
+                "count": {
+                  "type": ["integer"],
+                  "description": "The existing reaction count."
+                },
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment. "
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content: VIDEO, LIVESTREAM, AUDIO"
+                },
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                },
+                "is_incrementing": {
+                  "type": ["boolean"],
+                  "description": "True if the user is attempting to increment the reation count. False if the user is decrementing."
+                },
+                "root_comment_id": {
+                  "type": ["string"],
+                  "description": "The root comment id, in case this is a reply in a comment thread. "
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TaWy4lJ4iigcTsWjPCcCekNpUO",
+        "name": "Content Playback Exited",
+        "description": "When the content is exited, by navigation or hard closing the app. ",
+        "version": "24-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "bitrate",
+                "is_live",
+                "language",
+                "content_id",
+                "full_screen",
+                "content_type",
+                "content_duration",
+                "accumulative_time",
+                "playback_position"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live? "
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "accumulative_time": {
+                  "type": ["integer"],
+                  "description": "The total time the user has watched this content in seconds. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The position the video is playing at in seconds."
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TaWy2zz0bUxetNRN7Zj8cjLzvf",
+        "name": "Content Playback Paused",
+        "description": "When the content is paused by the user. ",
+        "version": "23-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "bitrate",
+                "is_live",
+                "user_id",
+                "language",
+                "content_id",
+                "full_screen",
+                "content_type",
+                "content_duration",
+                "accumulative_time",
+                "playback_position"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live? "
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "accumulative_time": {
+                  "type": ["integer"],
+                  "description": "The total time the user has watched this content in seconds. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The position the video is playing at in seconds."
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMbSmLePkFjl4RQ34BcWvRxV",
+        "name": "Profile Details Updated",
+        "description": "rule descrip missing",
+        "version": "2-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["language_updated", "username_updated", "displayname_updated"],
+              "properties": {
+                "language": {
+                  "type": ["string"],
+                  "description": "The language of the user"
+                },
+                "language_updated": {
+                  "type": ["boolean"],
+                  "description": "The language of the user was updated"
+                },
+                "username_updated": {
+                  "type": ["boolean"],
+                  "description": "The username of the user was updated"
+                },
+                "displayname_updated": {
+                  "type": ["boolean"],
+                  "description": "The display name of the user was updated"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2YGbyJWMkOjJf3KSXSe33q6zhut",
+        "name": "Application Backgrounded",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {},
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Ys7FwvMGXr9KdaefyrUIR2FAmX",
+        "name": "Content Download Error",
+        "description": "rule descrip missing",
+        "version": "4-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["content_id", "content_type", "content_duration"],
+              "properties": {
+                "reason": {
+                  "type": ["string"],
+                  "description": "The reason the download failed"
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Thb8wGQeu0u6Q9T8lJO84sjsF3",
+        "name": "Application Uninstalled",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {},
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TaWy5EKUG9Xw1RM2Kl9D6XOXVR",
+        "name": "Content Playback Playing",
+        "description": "Triggered every 10 seconds while playing the content. ",
+        "version": "25-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "bitrate",
+                "is_live",
+                "user_id",
+                "language",
+                "content_id",
+                "full_screen",
+                "content_type",
+                "content_duration",
+                "accumulative_time",
+                "playback_position"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live? "
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "accumulative_time": {
+                  "type": ["integer"],
+                  "description": "The total time the user has watched this content in seconds. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The position the video is playing at in seconds."
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TaQ5FUoPhG9B9xzT5KlBA3GV9G",
+        "name": "Content Playback Started",
+        "description": "When the content starts playing initially. ",
+        "version": "26-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "bitrate",
+                "is_live",
+                "language",
+                "new_count",
+                "content_id",
+                "full_screen",
+                "content_type",
+                "content_duration",
+                "playback_position"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live? "
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "new_count": {
+                  "type": ["integer"],
+                  "description": "The count after a user's action"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "rolls_count": {
+                  "type": ["integer"],
+                  "description": "The number of rolls that exist in a singular piece of content"
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The position the video is playing at in seconds."
+                },
+                "roll_avg_duration": {
+                  "type": ["integer"],
+                  "description": "The average duration in seconds of a group of rolls in a single piece of content."
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Thb8sgwpK8RWbreWR6BHnfOp4Y",
+        "name": "Permission Request Error",
+        "description": "rule descrip missing",
+        "version": "8-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["path", "trigger", "permission_type"],
+              "properties": {
+                "path": {
+                  "type": ["string"],
+                  "description": "The path of the permission request or when it was triggered. "
+                },
+                "trigger": {
+                  "type": ["string"],
+                  "description": "What triggers the permission request, uppercased(APP_OPEN, FRUX, EVENT, etc)"
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The channel ID of the permission request."
+                },
+                "permission_type": {
+                  "type": ["string"],
+                  "description": "The type of permission request uppercased: BLUETOOTH, IDFA, NOTIFICATIONS, LOCAL_NETWORK, PHOTOS, CAMERA, MICROPHONE, etc."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Ys7FsZTFjvlP3NyMnZXl6KKV8M",
+        "name": "Content Download Started",
+        "description": "rule descrip missing",
+        "version": "4-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["content_id", "content_type", "content_duration"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS39ugyKfAfElOl495VYPD0jT",
+        "name": "Profile Page Load Failed",
+        "description": "When a failure occurs fetching profile screen content.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason"],
+              "properties": {
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Ys7Fr3JEn8zNlbSSsl6hcW5FVF",
+        "name": "Content Download Complete",
+        "description": "rule descrip missing",
+        "version": "4-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["content_id", "content_type", "content_duration"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Thb8sKxl3I9mroDTgPSSFYfYxO",
+        "name": "Push Notification Opened",
+        "description": "rule descrip missing",
+        "version": "18-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["notification_id"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The user id"
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language"
+                },
+                "deep_link": {
+                  "type": ["string"],
+                  "description": "An link to route the app"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The channel ID of the push notification. "
+                },
+                "external_link": {
+                  "type": ["string"],
+                  "description": "A link to open the webview. "
+                },
+                "notification_id": {
+                  "type": ["string"],
+                  "description": "Channel notification ID. "
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Ys7Fw0QqjlkEPpCWZIReveXaXe",
+        "name": "Content Download Cancelled",
+        "description": "rule descrip missing",
+        "version": "4-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["content_id", "content_type", "content_duration"],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3EFKUsWoFyXoSvpmuk4sKwY",
+        "name": "Activity Page Load Failed",
+        "description": "When a failure occurs fetching activity screen details.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason", "tab"],
+              "properties": {
+                "tab": {
+                  "type": ["string"],
+                  "description": "The tab name on which the load was failed (eg Mentions, Replies, etc.)"
+                },
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS39m1QipWYz7drLIK1dVx8zk",
+        "name": "Content Page Load Failed",
+        "description": "When a failure occurs fetching content screen details.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason", "content_type"],
+              "properties": {
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content: VIDEO, LIVESTREAM, AUDIO"
+                },
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Thb8t8nYy9JAjNgBCLamaOVjiu",
+        "name": "Permission Request Started",
+        "description": "rule descrip missing",
+        "version": "22-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["path", "trigger", "permission_type"],
+              "properties": {
+                "path": {
+                  "type": ["string"],
+                  "description": "The path of the permission request or when it was triggered. "
+                },
+                "trigger": {
+                  "type": ["string"],
+                  "description": "What triggers the permission request, uppercased(APP_OPEN, FRUX, EVENT, etc)"
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The channel ID of the permission request."
+                },
+                "permission_type": {
+                  "type": ["string"],
+                  "description": "The type of permission request uppercased: BLUETOOTH, IDFA, PUSH_NOTIFICATION, LOCAL_NETWORK, PHOTOS, CAMERA, MICROPHONE, etc."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TaWy1JRQlgggIeAf2F1jpidQGL",
+        "name": "Content Playback Resumed",
+        "description": "When the content is resumed by the user. ",
+        "version": "22-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "bitrate",
+                "is_live",
+                "language",
+                "content_id",
+                "full_screen",
+                "content_type",
+                "content_duration",
+                "accumulative_time",
+                "playback_position"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live? "
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "accumulative_time": {
+                  "type": ["integer"],
+                  "description": "The total time the user has watched this content in seconds. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The position the video is playing at in seconds."
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TaWy6VYCs7w9A4zoDkFAyE4RH9",
+        "name": "Content Playback Seek Started",
+        "description": "When the user starts seeking the content. ",
+        "version": "23-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "bitrate",
+                "is_live",
+                "user_id",
+                "language",
+                "content_id",
+                "full_screen",
+                "content_type",
+                "content_duration",
+                "accumulative_time",
+                "playback_position"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live? "
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "accumulative_time": {
+                  "type": ["integer"],
+                  "description": "The total time the user has watched this content in seconds. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The position the video is playing at in seconds."
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3B4cAAefi63O9C2LUqltvEt",
+        "name": "Mod Approved Comment Failed",
+        "description": "When a mod fails to approve a reported comment.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason", "content_type", "content_id", "comment_id"],
+              "properties": {
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment. "
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content. "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content: VIDEO, LIVESTREAM, AUDIO"
+                },
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                },
+                "root_comment_id": {
+                  "type": ["string"],
+                  "description": "The root comment id, in case this is a reply in a comment thread. "
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2ceMMYH4uAl5KqijvT1dw0KCbS4",
+        "name": "Increment Comment Reaction",
+        "description": "rule descrip missing",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "user_id",
+                "content_id",
+                "content_type",
+                "comment_id",
+                "new_count",
+                "is_livechat"
+              ],
+              "properties": {
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user posting the comment"
+                },
+                "new_count": {
+                  "type": ["integer"],
+                  "description": "The new count of reactions of that type"
+                },
+                "comment_id": {
+                  "type": ["string"],
+                  "description": "The ID of the comment being replied to"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The ID of the content that is being commented on"
+                },
+                "is_livechat": {
+                  "type": ["boolean"],
+                  "description": "Was comment within a live chat"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of the content that is being commented on"
+                },
+                "is_moderator": {
+                  "type": ["boolean"],
+                  "description": "Is the user posting at least a moderator role?"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TaWy1Fw3IQeyZ2NC9A8wDduBou",
+        "name": "Content Playback Completed",
+        "description": "When the content has played 90 percent of the video. ",
+        "version": "22-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "bitrate",
+                "is_live",
+                "language",
+                "content_id",
+                "full_screen",
+                "content_type",
+                "content_duration",
+                "accumulative_time",
+                "playback_position"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live? "
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "accumulative_time": {
+                  "type": ["integer"],
+                  "description": "The total time the user has watched this content in seconds. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The position the video is playing at in seconds."
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TaWy2M1nqEUkuwC6mVQaBbEcGT",
+        "name": "Content Playback Seek Completed",
+        "description": "When the user ends seeking. ",
+        "version": "23-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "bitrate",
+                "is_live",
+                "user_id",
+                "language",
+                "content_id",
+                "full_screen",
+                "content_type",
+                "content_duration",
+                "accumulative_time",
+                "playback_position"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live? "
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "accumulative_time": {
+                  "type": ["integer"],
+                  "description": "The total time the user has watched this content in seconds. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The position the video is playing at in seconds."
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3CojtPoFEvCHZXxrzNIXobh",
+        "name": "General Settings Page Load Failed",
+        "description": "When a failure occurs fetching general settings screen content.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason"],
+              "properties": {
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TaWxzh14isENt8vQHgSiBS4fQF",
+        "name": "Content Playback Buffer Started",
+        "description": "When the content starts buffering. ",
+        "version": "24-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "bitrate",
+                "is_live",
+                "language",
+                "content_id",
+                "full_screen",
+                "content_type",
+                "content_duration",
+                "accumulative_time",
+                "playback_position"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live? "
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "accumulative_time": {
+                  "type": ["integer"],
+                  "description": "The total time the user has watched this content in seconds. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The position the video is playing at in seconds."
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3D3aHfP7N5XNyu2f3b8RRlC",
+        "name": "General Settings Update Failed",
+        "description": "When a failure occurs attempting to update user settings.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason"],
+              "properties": {
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TaWy3SSwbSEB3oaEP3UhdE1J7Q",
+        "name": "Content Playback Interrupted",
+        "description": "When the content is interrupted.",
+        "version": "8-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["language"],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is the livestream live? "
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "accumulative_time": {
+                  "type": ["integer"],
+                  "description": "The total time the user has watched this content in seconds. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The position the video is playing at in seconds."
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2Thb8yiPKjY6l5xwGbnWVhIvKJo",
+        "name": "Permission Request Complete",
+        "description": "rule descrip missing",
+        "version": "10-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["path", "trigger", "response", "permission_type"],
+              "properties": {
+                "path": {
+                  "type": ["string"],
+                  "description": "The path of the permission request or when it was triggered. "
+                },
+                "trigger": {
+                  "type": ["string"],
+                  "description": "What triggers the permission request, uppercased(APP_OPEN, FRUX, EVENT, etc)"
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language"
+                },
+                "response": {
+                  "type": ["string"],
+                  "description": "ACCEPTED or DENIED"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The channel ID of the permission request."
+                },
+                "permission_type": {
+                  "type": ["string"],
+                  "description": "The type of permission request uppercased: BLUETOOTH, IDFA, NOTIFICATIONS, LOCAL_NETWORK, PHOTOS, CAMERA, MICROPHONE, etc."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS3BzOgodudp0V20pvCsH1Rez",
+        "name": "Membership Page Load Failed",
+        "description": "When a failure occurs fetching membership screen content.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason"],
+              "properties": {
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2cyS39K5ZlGPjiaIyoDFnjFJJYu",
+        "name": "App Initialization Failed",
+        "description": "When initialization fails on the splash screen.",
+        "version": "1-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": ["failure_reason"],
+              "properties": {
+                "failure_reason": {
+                  "type": ["string"],
+                  "description": "The error message of the failure"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      {
+        "id": "ev_2TaWy5I714etYDh6Jbr5GRpDaYK",
+        "name": "Content Playback Buffer Completed",
+        "description": "When the content complets buffering. ",
+        "version": "22-0-0",
+        "rules": {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "required": ["properties"],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [
+                "bitrate",
+                "is_live",
+                "language",
+                "content_id",
+                "full_screen",
+                "content_type",
+                "content_duration",
+                "accumulative_time",
+                "playback_position"
+              ],
+              "properties": {
+                "bitrate": {
+                  "type": ["integer"],
+                  "description": "The bitrate of the video or livestream"
+                },
+                "is_live": {
+                  "type": ["boolean"],
+                  "description": "Is this a live stream and is it live? "
+                },
+                "user_id": {
+                  "type": ["string"],
+                  "description": "The ID of the user. "
+                },
+                "language": {
+                  "type": ["string"],
+                  "description": "The users language code"
+                },
+                "channel_id": {
+                  "type": ["string"],
+                  "description": "The creators' channel ID"
+                },
+                "content_id": {
+                  "type": ["string"],
+                  "description": "The content ID. "
+                },
+                "full_screen": {
+                  "type": ["boolean"],
+                  "description": "Is the content full screen? "
+                },
+                "video_width": {
+                  "type": ["integer"],
+                  "description": "The width of the video"
+                },
+                "content_type": {
+                  "type": ["string"],
+                  "description": "The type of content uppercased: LIVESTREAM, VIDEO, PODCAST, etc. "
+                },
+                "video_height": {
+                  "type": ["integer"],
+                  "description": "The height of the video"
+                },
+                "audio_language": {
+                  "type": ["string"],
+                  "description": "The language code of the audio track"
+                },
+                "casting_device": {
+                  "type": ["string"],
+                  "description": "The device type that is being cast to if any"
+                },
+                "content_duration": {
+                  "type": ["integer"],
+                  "description": "The duration of the content in seconds. "
+                },
+                "accumulative_time": {
+                  "type": ["integer"],
+                  "description": "The total time the user has watched this content in seconds. "
+                },
+                "playback_position": {
+                  "type": ["integer"],
+                  "description": "The position the video is playing at in seconds."
+                },
+                "subtitle_language": {
+                  "type": ["string"],
+                  "description": "The language code of the subtitle being used."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    ]
+  },
+  "create_time": "2023-08-05T23:35:26.218Z",
+  "update_time": "2024-05-07T16:35:29.697Z"
+}

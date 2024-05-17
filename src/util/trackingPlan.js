@@ -85,4 +85,5 @@ async function getEventSchema(tpId, tpVersion, eventType, eventName, workspaceId
 module.exports = {
   getEventSchema,
   getTrackingPlan,
+  tpCache,
 };

@@ -1,5 +1,6 @@
 import { Context } from 'koa';
 import { TrackingPlanservice } from '../services/trackingPlan';
+import { HackathonTrackingPlanservice } from '../services/hackathon/trackingPlan';
 import { ControllerUtility } from './util';
 
 export class TrackingPlanController {
@@ -7,7 +8,7 @@ export class TrackingPlanController {
     const events = ctx.request.body;
     const requestSize = Number(ctx.request.get('content-length'));
     const reqParams = ctx.request.query;
-    const response = await TrackingPlanservice.validate(events, requestSize, reqParams);
+    const response = await HackathonTrackingPlanservice.validate(events, requestSize, reqParams);
     ctx.body = response.body;
     ControllerUtility.postProcess(ctx, response.status);
     return ctx;
