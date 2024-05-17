@@ -373,10 +373,3 @@ export async function extractLibraries(
 
   return transformation.imports;
 }
-
-module.exports = {
-  userTransformHandler,
-  setupUserTransformHandler,
-  validateCode,
-  extractLibraries,
-};
