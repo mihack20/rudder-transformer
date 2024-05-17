@@ -8,9 +8,9 @@ import stats from '../../utils/stats.ts';
 // eslint-disable-next-line import/no-cycle
 import { extractLibraries } from './customTransformer.ts';
 
-const ISOLATE_VM_MEMORY = parseInt(process.env.ISOLATE_VM_MEMORY || '128', 10);
+const ISOLATE_VM_MEMORY = parseInt(Deno.env.ISOLATE_VM_MEMORY || '128', 10);
 const RUDDER_LIBRARY_REGEX = /^@rs\/[A-Za-z]+\/v[0-9]{1,3}$/;
-const GEOLOCATION_TIMEOUT_IN_MS = parseInt(process.env.GEOLOCATION_TIMEOUT_IN_MS || '1000', 10);
+const GEOLOCATION_TIMEOUT_IN_MS = parseInt(Deno.env.GEOLOCATION_TIMEOUT_IN_MS || '1000', 10);
 
 export const SUPPORTED_FUNC_NAMES = ['transformEvent', 'transformBatch'];
 
@@ -223,8 +223,8 @@ async function createIvm(code, libraryVersionIds, versionId, secrets, testMode) 
         if (args.length === 0) {
           throw new Error('ip address is required');
         }
-        if (!process.env.GEOLOCATION_URL) throw new Error('geolocation is not available right now');
-        const res = await fetch(`${process.env.GEOLOCATION_URL}/geoip/${args[0]}`, {
+        if (!Deno.env.GEOLOCATION_URL) throw new Error('geolocation is not available right now');
+        const res = await fetch(`${Deno.env.GEOLOCATION_URL}/geoip/${args[0]}`, {
           timeout: GEOLOCATION_TIMEOUT_IN_MS,
         });
         if (res.status !== 200) {

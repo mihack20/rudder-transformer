@@ -1,14 +1,13 @@
-import NodeCache from 'node-cache';
+import NodeCache from 'npm:node-cache';
 import { fetchWithProxy } from './fetch.ts';
 import logger from '../../logger.ts';
 import { responseStatusHandler } from './utils.ts';
-
-const stats = require('./stats');
+import stats from '../../utils/stats.ts';
 
 const myCache = new NodeCache({ stdTTL: 60 * 60 * 24 * 1 });
 
 // const CONFIG_BACKEND_URL = "http://localhost:5000";
-const CONFIG_BACKEND_URL = process.env.CONFIG_BACKEND_URL || 'https://api.rudderlabs.com';
+const CONFIG_BACKEND_URL = Deno.env.CONFIG_BACKEND_URL || 'https://api.rudderlabs.com';
 const getTransformationURL = `${CONFIG_BACKEND_URL}/transformation/getByVersionId`;
 
 // Gets the transformation from config backend.

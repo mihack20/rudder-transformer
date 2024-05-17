@@ -1,8 +1,8 @@
 /* eslint-disable max-classes-per-file, @typescript-eslint/return-await */
-import http from 'http';
-import https from 'https';
-import { promises } from 'npm:dns';
-import util from 'npm:util';
+import http from 'node:http';
+import https from 'node:https';
+import { promises } from 'node:dns';
+import util from 'node:util';
 import logger from '../../logger.ts';
 import stats from '../../utils/stats.ts';
 
@@ -10,7 +10,7 @@ const { Resolver } = promises;
 
 const resolver = new Resolver();
 
-const BLOCK_HOST_NAMES = process.env.BLOCK_HOST_NAMES || '';
+const BLOCK_HOST_NAMES = Deno.env.BLOCK_HOST_NAMES || '';
 const BLOCK_HOST_NAMES_LIST = BLOCK_HOST_NAMES.split(',');
 const LOCAL_HOST_NAMES_LIST = ['localhost', '127.0.0.1', '[::]', '[::1]'];
 const LOCALHOST_OCTET = '127.';
@@ -75,7 +75,7 @@ const blockInvalidProtocolRequests = (url) => {
 };
 
 export const fetchWithDnsWrapper = async (transformerVersionId, ...args) => {
-  if (process.env.DNS_RESOLVE_FETCH_HOST !== 'true') {
+  if (Deno.env.DNS_RESOLVE_FETCH_HOST !== 'true') {
     return await fetch(...args);
   }
 
@@ -163,11 +163,11 @@ const constructValidationErrors = (validationErrors) =>
 
 function processInfo() {
   return {
-    pid: process.pid,
-    ppid: process.ppid,
-    mem: process.memoryUsage(),
-    cpu: process.cpuUsage(),
-    cmd: `${process.argv0} ${process.argv.join(' ')}`,
+    pid: Deno.pid,
+    ppid: Deno.ppid,
+    mem: Deno.memoryUsage(),
+    cpu: Deno.cpuUsage(),
+    cmd: `${Deno.argv0} ${Deno.argv.join(' ')}`,
   };
 }
 

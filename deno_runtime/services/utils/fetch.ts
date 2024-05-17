@@ -9,8 +9,8 @@ export const fetchWithProxy = async (url, options = {}) => {
       ...options,
     };
 
-    if (!options.agent && process.env.HTTPS_PROXY) {
-      instanceOptions.agent = new HttpsProxyAgent(process.env.HTTPS_PROXY);
+    if (!options.agent && Deno.env.HTTPS_PROXY) {
+      instanceOptions.agent = new HttpsProxyAgent(Deno.env.HTTPS_PROXY);
     }
 
     if (lodash.isEmpty(instanceOptions)) {

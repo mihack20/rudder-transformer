@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from 'npm:axios';
 import { RespStatusError, RetryRequestError } from '../utils.ts';
 
-const OPENFAAS_GATEWAY_URL = process.env.OPENFAAS_GATEWAY_URL || 'http://localhost:8080';
-const OPENFAAS_GATEWAY_USERNAME = process.env.OPENFAAS_GATEWAY_USERNAME || '';
-const OPENFAAS_GATEWAY_PASSWORD = process.env.OPENFAAS_GATEWAY_PASSWORD || '';
+const OPENFAAS_GATEWAY_URL = Deno.env.OPENFAAS_GATEWAY_URL || 'http://localhost:8080';
+const OPENFAAS_GATEWAY_USERNAME = Deno.env.OPENFAAS_GATEWAY_USERNAME || '';
+const OPENFAAS_GATEWAY_PASSWORD = Deno.env.OPENFAAS_GATEWAY_PASSWORD || '';
 
 const basicAuth = {
   username: OPENFAAS_GATEWAY_USERNAME,

@@ -9,8 +9,8 @@ const stats = require('./stats');
 const { fetchWithDnsWrapper } = require('./utils');
 const { getMetadata, getTransformationMetadata } = require('../v0/util');
 
-const ISOLATE_VM_MEMORY = parseInt(process.env.ISOLATE_VM_MEMORY || '128', 10);
-const GEOLOCATION_TIMEOUT_IN_MS = parseInt(process.env.GEOLOCATION_TIMEOUT_IN_MS || '1000', 10);
+const ISOLATE_VM_MEMORY = parseInt(Deno.env.ISOLATE_VM_MEMORY || '128', 10);
+const GEOLOCATION_TIMEOUT_IN_MS = parseInt(Deno.env.GEOLOCATION_TIMEOUT_IN_MS || '1000', 10);
 
 async function runUserTransform(
   events,
@@ -85,9 +85,9 @@ async function runUserTransform(
         if (args.length < 1) {
           throw new Error('ip address is required');
         }
-        if (!process.env.GEOLOCATION_URL) throw new Error('geolocation is not available right now');
+        if (!Deno.env.GEOLOCATION_URL) throw new Error('geolocation is not available right now');
 
-        const res = await fetch(`${process.env.GEOLOCATION_URL}/geoip/${args[0]}`, {
+        const res = await fetch(`${Deno.env.GEOLOCATION_URL}/geoip/${args[0]}`, {
           timeout: GEOLOCATION_TIMEOUT_IN_MS,
         });
         if (res.status !== 200) {

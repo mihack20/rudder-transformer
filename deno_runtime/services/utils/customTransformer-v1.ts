@@ -4,7 +4,7 @@ import { getMetadata, getTransformationMetadata } from '../../v0/util.ts';
 import logger from '../../logger.ts';
 import stats from '../../utils/stats.ts';
 
-const userTransformTimeout = parseInt(process.env.USER_TRANSFORM_TIMEOUT || '600000', 10);
+const userTransformTimeout = parseInt(Deno.env.USER_TRANSFORM_TIMEOUT || '600000', 10);
 
 async function transform(isolatevm, events) {
   const transformationPayload: any = {};
