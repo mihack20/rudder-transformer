@@ -203,19 +203,20 @@ function getUserAttributesObject(message, mappingJson, destination) {
  * @param {*} message
  * @param {*} destination
  */
-async function processIdentify(message, destination) {
+async function processIdentify(message, destination, metadata) {
   const identifyPayload = getIdentifyPayload(message);
   const identifyEndpoint = getIdentifyEndpoint(getEndpointFromConfig(destination));
+  const headers = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    Authorization: `Bearer ${destination.Config.restApiKey}`,
+  };
   const { processedResponse: brazeIdentifyResp } = await handleHttpRequest(
     'post',
     identifyEndpoint,
     identifyPayload,
     {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${destination.Config.restApiKey}`,
-      },
+      headers,
     },
     {
       destType: 'braze',
@@ -225,6 +226,22 @@ async function processIdentify(message, destination) {
       endpointPath: '/users/identify',
     },
   );
+
+  const apiLog = {
+    request: {
+      endpoint: identifyEndpoint,
+      payload: identifyPayload,
+      headers,
+      params: {},
+    },
+    response: {
+      payload: brazeIdentifyResp.response,
+      status: brazeIdentifyResp.status,
+      headers: brazeIdentifyResp.headers,
+    },
+  };
+
+  metadata.apiLogs = [apiLog];
 
   if (!isHttpStatusSuccess(brazeIdentifyResp.status)) {
     throw new NetworkError(
@@ -473,7 +490,7 @@ function processAlias(message, destination) {
 
 async function process(event, processParams = { userStore: new Map() }, reqMetadata = {}) {
   let response;
-  const { message, destination } = event;
+  const { message, destination, metadata } = event;
   const messageType = message.type.toLowerCase();
 
   let category = ConfigCategory.DEFAULT;
@@ -517,7 +534,7 @@ async function process(event, processParams = { userStore: new Map() }, reqMetad
       const brazeExternalID =
         getDestinationExternalID(message, 'brazeExternalId') || message.userId;
       if (message.anonymousId && brazeExternalID) {
-        await processIdentify(message, destination);
+        await processIdentify(message, destination, metadata);
       } else {
         collectStatsForAliasMissConfigurations(destination.ID);
       }
