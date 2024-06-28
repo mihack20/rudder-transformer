@@ -461,6 +461,7 @@ const defaultRequestConfig = () => ({
     FORM: {},
   },
   files: {},
+  correlationIds: [],
 });
 
 // JSON_ARRAY: { payload: [] }

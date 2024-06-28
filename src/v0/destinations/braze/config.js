@@ -31,8 +31,8 @@ const BRAZE_PARTNER_NAME = 'RudderStack';
 
 // max requests per batch
 // Ref: https://www.braze.com/docs/api/endpoints/user_data/post_user_track/
-const TRACK_BRAZE_MAX_REQ_COUNT = 75;
-const IDENTIFY_BRAZE_MAX_REQ_COUNT = 50;
+const TRACK_BRAZE_MAX_REQ_COUNT = 2;
+const IDENTIFY_BRAZE_MAX_REQ_COUNT = 2;
 // https://www.braze.com/docs/api/endpoints/user_data/post_user_delete/
 
 const ALIAS_BRAZE_MAX_REQ_COUNT = 50;

@@ -346,16 +346,19 @@ function prepareGroupAndAliasBatch(arrayChunks, responseArray, destination, type
   };
 
   for (const chunk of arrayChunks) {
+    const correlationIds = chunk.map((data) => data.correlationId);
+    const chunkData = chunk.map((data) => data.data);
     const response = defaultRequestConfig();
+    response.correlationIds = correlationIds;
     if (type === 'merge') {
       response.endpoint = getAliasMergeEndPoint(getEndpointFromConfig(destination));
-      const merge_updates = chunk;
+      const merge_updates = chunkData;
       response.body.JSON = removeUndefinedAndNullValues({
         merge_updates,
       });
     } else if (type === 'subscription') {
       response.endpoint = getSubscriptionGroupEndPoint(getEndpointFromConfig(destination));
-      const subscription_groups = chunk;
+      const subscription_groups = chunkData;
       response.body.JSON = removeUndefinedAndNullValues({
         subscription_groups,
       });
@@ -385,21 +388,37 @@ const processBatch = (transformedEvents) => {
     } else if (transformedEvent?.batchedRequest?.body?.JSON) {
       const { attributes, events, purchases, subscription_groups, merge_updates } =
         transformedEvent.batchedRequest.body.JSON;
+
       if (Array.isArray(attributes)) {
-        attributesArray.push(...attributes);
+        const tempAttributes = attributes.map((attribute) => {
+          return { data: attribute, correlationId: transformedEvent.metadata[0].jobId };
+        });
+        attributesArray.push(...tempAttributes);
       }
       if (Array.isArray(events)) {
-        eventsArray.push(...events);
+        const tempEvents = events.map((event) => {
+          return { data: event, correlationId: transformedEvent.metadata[0].jobId };
+        });
+        eventsArray.push(...tempEvents);
       }
       if (Array.isArray(purchases)) {
-        purchaseArray.push(...purchases);
+        const tempPurchases = purchases.map((purchase) => {
+          return { data: purchase, correlationId: transformedEvent.metadata[0].jobId };
+        });
+        purchaseArray.push(...tempPurchases);
       }
 
       if (Array.isArray(subscription_groups)) {
-        subscriptionsArray.push(...subscription_groups);
+        const tempSubscriptionGroups = subscription_groups.map((subscription) => {
+          return { data: subscription, correlationId: transformedEvent.metadata[0].jobId };
+        });
+        subscriptionsArray.push(...tempSubscriptionGroups);
       }
 
       if (Array.isArray(merge_updates)) {
+        const tempMergeUsers = merge_updates.map((mergeUser) => {
+          return { data: mergeUser, correlationId: transformedEvent.metadata[0].jobId };
+        });
         mergeUsersArray.push(...merge_updates);
       }
 
@@ -427,21 +446,38 @@ const processBatch = (transformedEvents) => {
 
   const endpoint = getTrackEndPoint(getEndpointFromConfig(destination));
   for (let i = 0; i < maxNumberOfRequest; i += 1) {
-    const attributes = attributeArrayChunks[i];
-    const events = eventsArrayChunks[i];
-    const purchases = purchaseArrayChunks[i];
+    const dedupedCorrelationIds = new Set();
 
-    if (attributes) {
+    let attributes = attributeArrayChunks[i];
+    let events = eventsArrayChunks[i];
+    let purchases = purchaseArrayChunks[i];
+
+    if (Array.isArray(attributes)) {
+      attributes.forEach((attribute) => {
+        dedupedCorrelationIds.add(attribute.correlationId);
+      });
+      attributes = attributes.map((attribute) => attribute.data);
+
       stats.gauge('braze_batch_attributes_pack_size', attributes.length, {
         destination_id: destination.ID,
       });
     }
-    if (events) {
+    if (Array.isArray(events)) {
+      events.forEach((event) => {
+        dedupedCorrelationIds.add(event.correlationId);
+      });
+      events = events.map((event) => event.data);
+
       stats.gauge('braze_batch_events_pack_size', events.length, {
         destination_id: destination.ID,
       });
     }
-    if (purchases) {
+    if (Array.isArray(purchases)) {
+      purchases.forEach((purchase) => {
+        dedupedCorrelationIds.add(purchase.correlationId);
+      });
+      purchases = purchases.map((purchase) => purchase.data);
+
       stats.gauge('braze_batch_purchase_pack_size', purchases.length, {
         destination_id: destination.ID,
       });
@@ -455,6 +491,10 @@ const processBatch = (transformedEvents) => {
       events,
       purchases,
     });
+
+    // deduplicate correlationIds across attributes, events and purchases, subscription_groups and merge_users and push them to response
+
+    response.correlationIds.push(...Array.from(dedupedCorrelationIds));
     responseArray.push({
       ...response,
       headers,
